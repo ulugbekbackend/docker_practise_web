@@ -1,0 +1,39 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: docker_practise_db
+    ports:
+      - "5432:5432"
+
+    env_file:
+      - ".env"
+    volumes:
+      - docker_practise_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docker_practise_web
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - .:/app
+    
+    depends_on:
+      - db
+    env_file:
+      - ".env"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+
+volumes:
+  docker_practise_data:
