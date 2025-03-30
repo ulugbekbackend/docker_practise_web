@@ -35,6 +35,7 @@ services:
 networks:
   global_network:
     name: global_network
+    external: true
 
 volumes:
   docker_practise_data:
