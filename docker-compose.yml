@@ -3,8 +3,9 @@ services:
   db:
     image: postgres:15
     container_name: docker_practise_db
-    ports:
-      - "5432:5432"
+    # ❌ OLD (xavfli: DB internetga ochiq)
+    # ports:
+    #   - "5432:5432"
 
     env_file:
       - ".env"
@@ -19,8 +20,14 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: docker_practise_web
-    ports:
-      - "8000:8000"
+
+    # ❌ OLD (xavfli: backend internetga ochiq)
+    # ports:
+    #   - "8000:8000"
+
+    # ✅ NEW (faqat nginx kira oladi)
+    expose:
+      - "8000"
 
     volumes:
       - .:/app
