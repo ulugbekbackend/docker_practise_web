@@ -25,9 +25,13 @@ services:
     # ports:
     #   - "8000:8000"
 
-    # ✅ NEW (faqat nginx kira oladi)
-    expose:
-      - "8000"
+    ## ✅ NEW (faqat nginx kira oladi) <- nginx alohida docker compose da bolsa
+    #expose:
+    #  - "8000"
+
+    # server nginx uchun
+    ports:
+      - "127.0.0.1:8000:8000"
 
     volumes:
       - .:/app
